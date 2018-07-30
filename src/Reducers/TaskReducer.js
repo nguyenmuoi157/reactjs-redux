@@ -47,16 +47,20 @@ var TaskReducer = (state = initstate, action) => {
             state = { ...state, isnewtask: !state.isnewtask }
             break;
         case types.EDIT_ITEM:
+            var a = state.data.map((item) => {
+                return item.id==action.id ? item : { ...item, onEdit: true };
+            });
+            console.log('a', a);
             state.data.forEach((item) => {
-               // console.log('item',item,'action.id',action.id);
+                // console.log('item',item,'action.id',action.id);
                 if (item.id === action.id) {
                     item.onEdit = true;
-                    console.log('item',item);
+                    console.log('item', state);
                 }
             });
-            
+
             state = { ...state };
-            console.log('state',state);
+            console.log('state', state);
             break;
         default:
             state = { ...state };
